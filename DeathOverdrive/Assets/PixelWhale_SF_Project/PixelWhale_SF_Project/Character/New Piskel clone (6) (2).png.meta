@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 62ceba21fa9ad01448bbd5176c771f8c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2757079526765647823
+    second: New Piskel clone (6) (2)_0
+  - first:
+      213: 3216041771138510580
+    second: New Piskel clone (6) (2)_1
+  - first:
+      213: -2682871224678720306
+    second: New Piskel clone (6) (2)_2
+  - first:
+      213: 2049004663794321363
+    second: New Piskel clone (6) (2)_3
+  - first:
+      213: -1587139267841058186
+    second: New Piskel clone (6) (2)_4
+  - first:
+      213: -8273456136642587406
+    second: New Piskel clone (6) (2)_5
+  - first:
+      213: -7043957134972923558
+    second: New Piskel clone (6) (2)_6
+  - first:
+      213: -5611306252020625610
+    second: New Piskel clone (6) (2)_7
+  - first:
+      213: -205734899817173735
+    second: New Piskel clone (6) (2)_8
+  - first:
+      213: 6941938547402251760
+    second: New Piskel clone (6) (2)_9
+  - first:
+      213: -2962605527125031108
+    second: New Piskel clone (6) (2)_10
+  - first:
+      213: 1474388533825511934
+    second: New Piskel clone (6) (2)_11
+  - first:
+      213: -8072507100499765777
+    second: New Piskel clone (6) (2)_12
+  - first:
+      213: -4917250434887739535
+    second: New Piskel clone (6) (2)_13
+  - first:
+      213: -5225414797929724719
+    second: New Piskel clone (6) (2)_14
+  - first:
+      213: -6922565682663577076
+    second: New Piskel clone (6) (2)_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_0
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 2049
+        width: 312
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 138a1ad27c2ecb9d0800000000000000
+      internalID: -2757079526765647823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_1
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 2049
+        width: 342
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe678793fca1ac20800000000000000
+      internalID: 3216041771138510580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_2
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 2049
+        width: 332
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc58eae5d684cad0800000000000000
+      internalID: -2682871224678720306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_3
+      rect:
+        serializedVersion: 2
+        x: 2119
+        y: 2049
+        width: 252
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d74498b2e68f6c10800000000000000
+      internalID: 2049004663794321363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_4
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 1409
+        width: 232
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a9243be3959f9e0800000000000000
+      internalID: -1587139267841058186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_5
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 1409
+        width: 322
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f494a67a77ce2d80800000000000000
+      internalID: -8273456136642587406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_6
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 1409
+        width: 312
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a515cd46e46de3e90800000000000000
+      internalID: -7043957134972923558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_7
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 1409
+        width: 252
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63fc16a91b2a022b0800000000000000
+      internalID: -5611306252020625610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_8
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 769
+        width: 232
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d2f7ad235152df0800000000000000
+      internalID: -205734899817173735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_9
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 769
+        width: 322
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd90823458b65060800000000000000
+      internalID: 6941938547402251760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_10
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 769
+        width: 312
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c378a1a38f5b2e6d0800000000000000
+      internalID: -2962605527125031108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_11
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 769
+        width: 252
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef124935f84167410800000000000000
+      internalID: 1474388533825511934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_12
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 129
+        width: 232
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe594e3ef81b8ff80800000000000000
+      internalID: -8072507100499765777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_13
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 129
+        width: 322
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17791ec38ca62cbb0800000000000000
+      internalID: -4917250434887739535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_14
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 129
+        width: 312
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4445d3de89b77b0800000000000000
+      internalID: -5225414797929724719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel clone (6) (2)_15
+      rect:
+        serializedVersion: 2
+        x: 2049
+        y: 129
+        width: 252
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a278e503b1eef90800000000000000
+      internalID: -6922565682663577076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

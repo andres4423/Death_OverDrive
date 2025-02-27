@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float move = Input.GetAxisRaw("Horizontal");
 
-       
         if (move != 0)
         {
             rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
@@ -31,35 +30,42 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = move < 0;
         }
         else
-        { 
+        {
             animator.SetBool("IsRunning", false);
             animator.SetFloat("speed", 0);
         }
 
-        
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
             isGrounded = false;
-            animator.SetBool("IsJumping", true);
+            rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
+            animator.SetBool("isJumping", true);
             animator.SetBool("IsFalling", false);
         }
 
-        
         if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
         {
-            animator.SetBool("IsFalling", true);
-            animator.SetBool("IsJumping", false);
+            animator.SetBool("isFalling", true);
+            animator.SetBool("isJumping", false);
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.contacts[0].normal.y > 0.5f)
+        foreach (ContactPoint2D contact in coll.contacts)
         {
-            isGrounded = true;
-            animator.SetBool("IsJumping", false);
-            animator.SetBool("IsFalling", false);
+            if (contact.normal.y > 0.5f)
+            {
+                isGrounded = true;
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", false);
+                return;
+            }
         }
+    }
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        isGrounded = false;
     }
 }

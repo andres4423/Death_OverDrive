@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float move = Input.GetAxisRaw("Horizontal");
 
-        // Movimiento horizontal
+       
         if (move != 0)
         {
             rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
@@ -31,14 +31,12 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = move < 0;
         }
         else
-        {
-            // Detener el personaje cuando no se presiona dirección
-          
+        { 
             animator.SetBool("IsRunning", false);
             animator.SetFloat("speed", 0);
         }
 
-        // Salto
+        
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
@@ -47,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsFalling", false);
         }
 
-        // Animación de caída
+        
         if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
         {
             animator.SetBool("IsFalling", true);

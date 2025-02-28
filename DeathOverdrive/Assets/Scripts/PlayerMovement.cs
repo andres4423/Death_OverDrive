@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +10,17 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce = 5f;
     private bool isGrounded;
 
+    // Dash variables
+    public float dashSpeed = 8f;
+    public float dashTime = 0.2f;
+    private bool isDashing = false;
+    private float lastDashTime;
+    public float dashCooldown = 1f;
+
+    // Attack variables
+    private bool isAttacking = false;
+    public float attackDuration = 0.15f;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -20,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isDashing || isAttacking) return; 
+
         float move = Input.GetAxisRaw("Horizontal");
 
         if (move != 0)
@@ -40,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
             animator.SetBool("isJumping", true);
-            animator.SetBool("IsFalling", false);
+            animator.SetBool("isFalling", false);
         }
 
         if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
@@ -48,6 +60,46 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isFalling", true);
             animator.SetBool("isJumping", false);
         }
+
+        // Dash input
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+
+       //ataque input
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            StartCoroutine(AttackCoroutine());
+        }
+    }
+
+//animacion dash
+    IEnumerator DashCoroutine()
+    {
+        isDashing = true;
+        lastDashTime = Time.time;
+    // Activar el dash
+        animator.SetTrigger("dash"); 
+
+        float direction = spriteRenderer.flipX ? -1f : 1f; 
+        rigidBody.linearVelocity = new Vector2(direction * dashSpeed, 0); 
+
+        yield return new WaitForSeconds(dashTime); 
+
+        isDashing = false;
+    }
+
+//animacion ataque
+    IEnumerator AttackCoroutine()
+    {
+        isAttacking = true;
+        animator.SetBool("attack", true);
+
+        yield return new WaitForSeconds(attackDuration); 
+
+        animator.SetBool("attack", false); 
+        isAttacking = false;
     }
 
     void OnCollisionEnter2D(Collision2D coll)

@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private float speed = 2f;
-    private float jumpForce = 5f;
+    private float speed = 3f;
+    private float jumpForce = 6.4f;
     private bool isGrounded;
 
     // Dash variables

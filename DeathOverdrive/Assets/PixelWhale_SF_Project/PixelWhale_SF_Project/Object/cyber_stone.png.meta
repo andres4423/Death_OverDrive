@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cyber_stone_0: -1139599211042808770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

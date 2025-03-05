@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      red_cloud_noon_0: -2531426103063777538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

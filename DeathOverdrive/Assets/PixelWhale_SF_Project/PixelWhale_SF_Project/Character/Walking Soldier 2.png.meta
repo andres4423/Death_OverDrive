@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Walking Soldier 2_0: -7647647489870393112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

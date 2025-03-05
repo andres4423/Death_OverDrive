@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sf_fire_planet_0: -1898955502013271341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

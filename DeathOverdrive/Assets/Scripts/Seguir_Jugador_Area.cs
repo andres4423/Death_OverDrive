@@ -9,24 +9,44 @@ public class Seguir_Jugador_Area : MonoBehaviour
     public float distanciaMaxima;
     public Vector3 puntoInicial;
     public bool mirandoDerecha;
-
+    private Animator animator;
     public EstadosMovimiento estadoActual;
+    public float distanciaAtaque = 0.4f; // Distancia mínima para atacar
+    public float tiempoEntreAtaques = 1.5f; // Tiempo de espera entre ataques
+    private bool puedeAtacar = true; // Controla el tiempo de ataque
 
-    public enum EstadosMovimiento{
+    public enum EstadosMovimiento
+    {
         Esperando,
         Siguiendo,
+        Atacando,
         Volviendo
     }
 
     public void Start()
     {
-        puntoInicial = transformJugador.position;
+        animator = GetComponent<Animator>(); // Obtiene el Animator del enemigo
 
+        if (transformJugador == null)
+        {
+            GameObject jugador = GameObject.FindGameObjectWithTag("Player");
+            if (jugador != null)
+            {
+                transformJugador = jugador.transform;
+            }
+            else
+            {
+                Debug.LogError("No se encontró un objeto con la etiqueta 'Player'.");
+            }
+        }
+
+        puntoInicial = transform.position;
     }
+
 
     void Update()
     {
-        switch(estadoActual)
+        switch (estadoActual)
         {
             case EstadosMovimiento.Esperando:
                 EstadoEsperando();
@@ -34,17 +54,23 @@ public class Seguir_Jugador_Area : MonoBehaviour
             case EstadosMovimiento.Siguiendo:
                 EstadoSiguiendo();
                 break;
+            case EstadosMovimiento.Atacando: // ¡Asegúrate de incluir esto!
+                EstadoAtacando();
+                break;
             case EstadosMovimiento.Volviendo:
                 EstadoVolviendo();
                 break;
         }
     }
 
+
     private void EstadoEsperando()
     {
+        animator.SetBool("isWalkingG", false);
+
         Collider2D jugadorCollider = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
-        
-        if(jugadorCollider)
+
+        if (jugadorCollider)
         {
             transformJugador = jugadorCollider.transform;
 
@@ -54,32 +80,70 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void EstadoSiguiendo()
     {
-        if(transformJugador == null)
+        if (transformJugador == null)
         {
             estadoActual = EstadosMovimiento.Volviendo;
             return;
         }
 
+        float distancia = Vector2.Distance(transform.position, transformJugador.position);
+
+        if (distancia <= distanciaAtaque)
+        {
+            estadoActual = EstadosMovimiento.Atacando;
+            return;
+        }
+
+        // Movimiento y animación de caminar
         transform.position = Vector2.MoveTowards(transform.position, transformJugador.position, velocidadMovimiento * Time.deltaTime);
+        animator.SetBool("isWalkingG", true);
+        animator.SetBool("isAttackingG", false);
 
         GirarAObjetivo(transformJugador.position);
 
-        if(Vector2.Distance(transform.position, puntoInicial) > distanciaMaxima ||
-            Vector2.Distance(transform.position, transformJugador.position) > distanciaMaxima)
+        if (distancia > distanciaMaxima)
         {
             estadoActual = EstadosMovimiento.Volviendo;
             transformJugador = null;
-            //cambio de estado
         }
     }
+
+    private void EstadoAtacando()
+    {
+        animator.SetBool("isWalkingG", false);
+        animator.SetBool("isAttackingG", true);
+
+        if (puedeAtacar)
+        {
+            puedeAtacar = false;
+            // Lógica de ataque al jugador aquí
+            Invoke("ReiniciarAtaque", tiempoEntreAtaques);
+        }
+
+        float distancia = Vector2.Distance(transform.position, transformJugador.position);
+
+        if (distancia > distanciaAtaque)
+        {
+            estadoActual = EstadosMovimiento.Siguiendo;
+            animator.SetBool("isAttackingG", false); // Desactivar animación de ataque
+        }
+    }
+
+    private void ReiniciarAtaque()
+    {
+        puedeAtacar = true;
+    }
+
+
 
     private void EstadoVolviendo()
     {
         transform.position = Vector2.MoveTowards(transform.position, puntoInicial, velocidadMovimiento * Time.deltaTime);
+        animator.SetBool("isWalkingG", true);
 
         GirarAObjetivo(puntoInicial);
 
-        if(Vector2.Distance(transform.position, puntoInicial) < 0.1f)
+        if (Vector2.Distance(transform.position, puntoInicial) < 0.1f)
         {
             estadoActual = EstadosMovimiento.Esperando;
         }
@@ -87,11 +151,11 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void GirarAObjetivo(Vector3 objetivo)
     {
-        if(objetivo.x > transformJugador.position.x && !mirandoDerecha)
+        if (objetivo.x < transform.position.x && mirandoDerecha)
         {
             Girar();
         }
-        else if(objetivo.x < transform.position.x && mirandoDerecha)
+        else if (objetivo.x > transform.position.x && !mirandoDerecha)
         {
             Girar();
         }
@@ -100,10 +164,13 @@ public class Seguir_Jugador_Area : MonoBehaviour
     private void Girar()
     {
         mirandoDerecha = !mirandoDerecha;
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
+
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
-    public void OnDrawGizmos(){
+
+    public void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radioBusqueda);
         Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);

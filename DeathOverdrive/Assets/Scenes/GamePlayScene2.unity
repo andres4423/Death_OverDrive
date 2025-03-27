@@ -119,6 +119,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &267543214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+  m_PrefabInstance: {fileID: 1355772948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &267543221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267543214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 3
 --- !u!1 &290702258
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,11 +784,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Name
-      value: 1. Idle 48 x 48_0
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3803073802210438315, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Size.x
@@ -831,7 +853,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 267543221}
   m_SourcePrefab: {fileID: 100100000, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
 --- !u!1 &1692022468
 GameObject:
@@ -1394,7 +1419,19 @@ PrefabInstance:
       objectReference: {fileID: 336480189}
     - target: {fileID: 4567108407781191898, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
       propertyPath: m_Name
-      value: cyber prisoner idle-Sheet_0
+      value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567108407781191898, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595685809623300256, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.651234
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595685809623300256, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6595685809623300256, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1443,6 +1480,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4567108407781191898, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2000886757}
+    - targetCorrespondingSourceObject: {fileID: 4567108407781191898, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2000886762}
   m_SourcePrefab: {fileID: 100100000, guid: b6a09a5bb620c0c45976a87554a5b208, type: 3}
 --- !u!1 &2000886752 stripped
 GameObject:
@@ -1471,6 +1511,21 @@ MonoBehaviour:
   puntoInicial: {x: -0.6522515, y: -3.25, z: 0}
   mirandoDerecha: 0
   estadoActual: 0
+  distanciaAtaque: 1
+  tiempoEntreAtaques: 1.5
+--- !u!114 &2000886762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000886752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

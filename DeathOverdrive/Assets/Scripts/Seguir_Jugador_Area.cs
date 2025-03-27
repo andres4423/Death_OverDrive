@@ -11,8 +11,8 @@ public class Seguir_Jugador_Area : MonoBehaviour
     public bool mirandoDerecha;
     private Animator animator;
     public EstadosMovimiento estadoActual;
-    public float distanciaAtaque = 0.4f; // Distancia mínima para atacar
-    public float tiempoEntreAtaques = 1.5f; // Tiempo de espera entre ataques
+    public float distanciaAtaque = 1.0f; // O prueba con 1.5f o más
+    public float tiempoEntreAtaques = 3f; // Tiempo de espera entre ataques
     private bool puedeAtacar = true; // Controla el tiempo de ataque
 
     public enum EstadosMovimiento
@@ -61,6 +61,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
                 EstadoVolviendo();
                 break;
         }
+
     }
 
 
@@ -73,7 +74,6 @@ public class Seguir_Jugador_Area : MonoBehaviour
         if (jugadorCollider)
         {
             transformJugador = jugadorCollider.transform;
-
             estadoActual = EstadosMovimiento.Siguiendo;
         }
     }
@@ -88,11 +88,13 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
         float distancia = Vector2.Distance(transform.position, transformJugador.position);
 
+
         if (distancia <= distanciaAtaque)
         {
             estadoActual = EstadosMovimiento.Atacando;
             return;
         }
+
 
         // Movimiento y animación de caminar
         transform.position = Vector2.MoveTowards(transform.position, transformJugador.position, velocidadMovimiento * Time.deltaTime);
@@ -116,7 +118,14 @@ public class Seguir_Jugador_Area : MonoBehaviour
         if (puedeAtacar)
         {
             puedeAtacar = false;
-            // Lógica de ataque al jugador aquí
+
+            // Verifica si el jugador tiene un script de vida y le aplica daño
+            Vida vidaJugador = transformJugador.GetComponent<Vida>();
+            if (vidaJugador != null)
+            {
+                vidaJugador.RecibirDanio(1);
+            }
+
             Invoke("ReiniciarAtaque", tiempoEntreAtaques);
         }
 
@@ -125,9 +134,10 @@ public class Seguir_Jugador_Area : MonoBehaviour
         if (distancia > distanciaAtaque)
         {
             estadoActual = EstadosMovimiento.Siguiendo;
-            animator.SetBool("isAttackingG", false); // Desactivar animación de ataque
+            animator.SetBool("isAttackingG", false);
         }
     }
+
 
     private void ReiniciarAtaque()
     {
@@ -167,7 +177,6 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
-
 
     public void OnDrawGizmos()
     {

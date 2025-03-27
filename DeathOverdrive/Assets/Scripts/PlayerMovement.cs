@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDashing || isAttacking) return; 
+        if (isDashing || isAttacking) return;
 
         float move = Input.GetAxisRaw("Horizontal");
 
@@ -67,38 +67,49 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashCoroutine());
         }
 
-       //ataque input
-        if (Input.GetMouseButtonDown(0)) 
+        //ataque input
+        if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(AttackCoroutine());
         }
     }
 
-//animacion dash
+    //animacion dash
     IEnumerator DashCoroutine()
     {
         isDashing = true;
         lastDashTime = Time.time;
-    // Activar el dash
-        animator.SetTrigger("dash"); 
+        // Activar el dash
+        animator.SetTrigger("dash");
 
-        float direction = spriteRenderer.flipX ? -1f : 1f; 
-        rigidBody.linearVelocity = new Vector2(direction * dashSpeed, 0); 
+        float direction = spriteRenderer.flipX ? -1f : 1f;
+        rigidBody.linearVelocity = new Vector2(direction * dashSpeed, 0);
 
-        yield return new WaitForSeconds(dashTime); 
+        yield return new WaitForSeconds(dashTime);
 
         isDashing = false;
     }
 
-//animacion ataque
+    //animacion ataque
     IEnumerator AttackCoroutine()
     {
         isAttacking = true;
         animator.SetBool("attack", true);
 
-        yield return new WaitForSeconds(attackDuration); 
+        Collider2D enemigo = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Enemigo"));
 
-        animator.SetBool("attack", false); 
+        if (enemigo != null)
+        {
+            Vida vidaEnemigo = enemigo.GetComponent<Vida>();
+            if (vidaEnemigo != null)
+            {
+                vidaEnemigo.RecibirDanio(3); // Mata al enemigo con un solo golpe
+            }
+        }
+
+        yield return new WaitForSeconds(attackDuration);
+
+        animator.SetBool("attack", false);
         isAttacking = false;
     }
 

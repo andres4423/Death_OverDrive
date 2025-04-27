@@ -21,58 +21,73 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     public float attackDuration = 0.15f;
 
+    private ParticleSystem particulas;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        particulas = GetComponentInChildren<ParticleSystem>(); 
     }
 
-    void Update()
+void Update()
+{
+    if (isDashing || isAttacking) return;
+
+    float move = Input.GetAxisRaw("Horizontal");
+
+    if (move != 0)
     {
-        if (isDashing || isAttacking) return;
-
-        float move = Input.GetAxisRaw("Horizontal");
-
-        if (move != 0)
-        {
-            rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
-            animator.SetFloat("speed", Mathf.Abs(move));
-            animator.SetBool("IsRunning", true);
-            spriteRenderer.flipX = move < 0;
-        }
-        else
-        {
-            animator.SetBool("IsRunning", false);
-            animator.SetFloat("speed", 0);
-        }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            isGrounded = false;
-            rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
-            animator.SetBool("isJumping", true);
-            animator.SetBool("isFalling", false);
-        }
-
-        if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
-        {
-            animator.SetBool("isFalling", true);
-            animator.SetBool("isJumping", false);
-        }
-
-        // Dash input
-        if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
-        {
-            StartCoroutine(DashCoroutine());
-        }
-
-        //ataque input
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(AttackCoroutine());
-        }
+        rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
+        animator.SetFloat("speed", Mathf.Abs(move));
+        animator.SetBool("IsRunning", true);
+        spriteRenderer.flipX = move < 0;
     }
+    else
+    {
+        animator.SetBool("IsRunning", false);
+        animator.SetFloat("speed", 0);
+    }
+
+    if (Input.GetButtonDown("Jump") && isGrounded)
+    {
+        isGrounded = false;
+        rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
+        animator.SetBool("isJumping", true);
+        animator.SetBool("isFalling", false);
+    }
+
+    if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
+    {
+        animator.SetBool("isFalling", true);
+        animator.SetBool("isJumping", false);
+    }
+
+    // DASH
+    if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
+    {
+        // Actualizar la posición de las partículas antes de hacer dash
+        float direction = spriteRenderer.flipX ? -1f : 1f;
+
+        Vector3 particlePosition = particulas.transform.localPosition;
+        particlePosition.x = direction < 0 ? Mathf.Abs(particlePosition.x) : -Mathf.Abs(particlePosition.x);
+        particulas.transform.localPosition = particlePosition;
+
+        particulas.Play();
+
+        StartCoroutine(DashCoroutine());
+    }
+
+    // ATAQUE
+    if (Input.GetMouseButtonDown(0))
+    {
+        StartCoroutine(AttackCoroutine());
+    }
+}
+
+
+
 
     //animacion dash
     IEnumerator DashCoroutine()

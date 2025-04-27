@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 66079958}
   - component: {fileID: 66079960}
   - component: {fileID: 66079959}
+  - component: {fileID: 66079961}
   m_Layer: 5
   m_Name: Historia_text
   m_TagString: Untagged
@@ -153,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.29, y: 117.28}
-  m_SizeDelta: {x: 185.42, y: 31.44}
+  m_AnchoredPosition: {x: 77, y: -56}
+  m_SizeDelta: {x: 825.13, y: 273.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66079959
 MonoBehaviour:
@@ -176,10 +177,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Historia ac\xE1"
+  m_text: "Neo Elysium, 2147. La ciudad respira bajo el yugo de Eon Corp.\r\n\r\nLos
+    implantes de Kael Draven a\xFAn arden tras el primer uso del N\xFAcleo Temporal.
+    El dispositivo, incrustado en su pecho, late como un coraz\xF3n mec\xE1nico,
+    record\xE1ndole que cada salto lo acerca al colapso.\r\n\r\nPero no hay tiempo
+    para dudas.\r\n\r\nEon Corp ya lo busca.\r\n\r\nEn las calles inundadas de ne\xF3n
+    y vigilancia corporativa, los mercenarios de la corporaci\xF3n rastrean su se\xF1al.
+    Alguien vendi\xF3 su ubicaci\xF3n... y solo hay una forma de sobrevivir: adentrarse
+    en las sombras de la ciudad para descubrir la verdad detr\xE1s del Chrono Singularity.\r\n\r\n\n\nEl
+    juego comienza.\n\nPresiona Enter"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e2b2c1308a6690a44a512b06cbe6f4e8, type: 2}
+  m_sharedMaterial: {fileID: 7625760262079774693, guid: e2b2c1308a6690a44a512b06cbe6f4e8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -203,8 +212,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -241,7 +250,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 156.41333, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -255,6 +264,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66079957}
   m_CullTransparentMesh: 1
+--- !u!114 &66079961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66079957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096c58d9e83d16e46a35ae3450dcef96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 18
 --- !u!1 &141122605
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -215.95, y: 24.199993}
+  m_AnchoredPosition: {x: -176.97, y: 24.199993}
   m_SizeDelta: {x: 270, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &141122607
@@ -425,7 +447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113.89998, y: -16.310001}
+  m_AnchoredPosition: {x: 152.87997, y: -16.310001}
   m_SizeDelta: {x: 309.9, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162834273
@@ -907,7 +929,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000676264f1
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1060,7 +1082,7 @@ Transform:
   m_GameObject: {fileID: 1255798978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.20282856, y: -0.47947076, z: 4.1847763}
+  m_LocalPosition: {x: -1.68, y: -0.47947076, z: 4.1847763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1081,7 +1103,6 @@ MonoBehaviour:
   panelHistoria: {fileID: 1271183493}
   textoTMP: {fileID: 66079959}
   idEscena: 2
-  velocidadTexto: 0.05
 --- !u!61 &1255798982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1238,7 +1259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.34999, y: -8.570011}
+  m_AnchoredPosition: {x: -166.37, y: -8.570011}
   m_SizeDelta: {x: 291.16, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622521607
@@ -1437,6 +1458,16 @@ Tilemap:
   m_GameObject: {fileID: 1692022468}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -14, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -13, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -1697,6 +1728,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 13, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -8, y: -4, z: 0}
     second:
       serializedVersion: 2
@@ -1739,21 +1780,21 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 26
+  - m_RefCount: 28
     m_Data: {fileID: 11400000, guid: 6b6e52d6df04db04ea580f44e2f3881e, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 34dc2f53a31e31f47b6ee2cacfefaede, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 2d7f4ffbc528d1e4b86cedd042affaec, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 26
+  - m_RefCount: 28
     m_Data: {fileID: 1589228442, guid: 83894e49f5cf51944b8d7e0efe027172, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 1110123332, guid: 83894e49f5cf51944b8d7e0efe027172, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -345254394, guid: 83894e49f5cf51944b8d7e0efe027172, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 27
+  - m_RefCount: 29
     m_Data:
       e00: 1
       e01: 0
@@ -1826,13 +1867,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 30
+  - m_RefCount: 32
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -13, y: -5, z: 0}
-  m_Size: {x: 26, y: 5, z: 1}
+  m_Origin: {x: -14, y: -5, z: 0}
+  m_Size: {x: 28, y: 5, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -1958,7 +1999,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1692022473}
     m_ColliderPaths:
-    - - X: 130000000
+    - - X: 140000000
         Y: -40000000
       - X: -44375000
         Y: -40000000
@@ -1968,22 +2009,22 @@ CompositeCollider2D:
         Y: -30000000
       - X: -75625000
         Y: -40000000
-      - X: -130000000
+      - X: -140000000
         Y: -40000000
-      - X: -130000000
+      - X: -140000000
         Y: -50000000
-      - X: 130000000
+      - X: 140000000
         Y: -50000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 12.99997, y: -5}
-      - {x: 12.99997, y: -4}
+    - - {x: 13.999971, y: -5}
+      - {x: 13.999971, y: -4}
       - {x: -4.4375, y: -3.9999704}
       - {x: -4.437529, y: -3}
       - {x: -7.5625, y: -3.0000293}
       - {x: -7.5625296, y: -4}
-      - {x: -13, y: -4.000029}
-      - {x: -12.99997, y: -5}
+      - {x: -14, y: -4.000029}
+      - {x: -13.999971, y: -5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -2067,7 +2108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -196, y: 57}
+  m_AnchoredPosition: {x: -157.02, y: 57}
   m_SizeDelta: {x: 309.9, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745081486
@@ -2203,7 +2244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195.98, y: -41.190002}
+  m_AnchoredPosition: {x: -157, y: -41.190002}
   m_SizeDelta: {x: 309.9, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944834476
@@ -2339,7 +2380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 127, y: 49}
+  m_AnchoredPosition: {x: 165.98, y: 49}
   m_SizeDelta: {x: 309.9, y: 32.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127760049
@@ -2560,18 +2601,6 @@ PrefabInstance:
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Name
       value: 1. Idle 48 x 48_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3803073802210438315, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955172006976287157, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: m_BodyType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574112180057744636, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_LocalPosition.x

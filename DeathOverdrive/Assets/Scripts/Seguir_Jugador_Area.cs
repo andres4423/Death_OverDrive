@@ -70,7 +70,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
         animator.SetBool("isWalkingG", false);
 
         Collider2D jugadorCollider = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
-
+        
         if (jugadorCollider)
         {
             transformJugador = jugadorCollider.transform;

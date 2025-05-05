@@ -8,6 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float speed = 3f;
     private float jumpForce = 6.4f;
+
+    // GroundCheck variables
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.1f;
+    public LayerMask groundLayer;
     private bool isGrounded;
 
     // Dash variables
@@ -31,70 +36,73 @@ public class PlayerMovement : MonoBehaviour
         particulas = GetComponentInChildren<ParticleSystem>(); 
     }
 
-void Update()
-{
-    if (isDashing || isAttacking) return;
-
-    float move = Input.GetAxisRaw("Horizontal");
-
-    if (move != 0)
+    void Update()
     {
-        rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
-        animator.SetFloat("speed", Mathf.Abs(move));
-        animator.SetBool("IsRunning", true);
-        spriteRenderer.flipX = move < 0;
+        // Revisión del suelo
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+        }
+
+
+        if (isDashing || isAttacking) return;
+
+        float move = Input.GetAxisRaw("Horizontal");
+
+        if (move != 0)
+        {
+            rigidBody.linearVelocity = new Vector2(speed * move, rigidBody.linearVelocity.y);
+            animator.SetFloat("speed", Mathf.Abs(move));
+            animator.SetBool("IsRunning", true);
+            spriteRenderer.flipX = move < 0;
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
+            animator.SetFloat("speed", 0);
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isFalling", false);
+        }
+
+        if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
+        {
+            animator.SetBool("isFalling", true);
+            animator.SetBool("isJumping", false);
+        }
+
+        // DASH
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
+        {
+            float direction = spriteRenderer.flipX ? -1f : 1f;
+
+            Vector3 particlePosition = particulas.transform.localPosition;
+            particlePosition.x = direction < 0 ? Mathf.Abs(particlePosition.x) : -Mathf.Abs(particlePosition.x);
+            particulas.transform.localPosition = particlePosition;
+
+            particulas.Play();
+
+            StartCoroutine(DashCoroutine());
+        }
+
+        // ATAQUE
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(AttackCoroutine());
+        }
     }
-    else
-    {
-        animator.SetBool("IsRunning", false);
-        animator.SetFloat("speed", 0);
-    }
 
-    if (Input.GetButtonDown("Jump") && isGrounded)
-    {
-        isGrounded = false;
-        rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
-        animator.SetBool("isJumping", true);
-        animator.SetBool("isFalling", false);
-    }
-
-    if (rigidBody.linearVelocity.y < -0.1f && !isGrounded)
-    {
-        animator.SetBool("isFalling", true);
-        animator.SetBool("isJumping", false);
-    }
-
-    // DASH
-    if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
-    {
-        // Actualizar la posición de las partículas antes de hacer dash
-        float direction = spriteRenderer.flipX ? -1f : 1f;
-
-        Vector3 particlePosition = particulas.transform.localPosition;
-        particlePosition.x = direction < 0 ? Mathf.Abs(particlePosition.x) : -Mathf.Abs(particlePosition.x);
-        particulas.transform.localPosition = particlePosition;
-
-        particulas.Play();
-
-        StartCoroutine(DashCoroutine());
-    }
-
-    // ATAQUE
-    if (Input.GetMouseButtonDown(0))
-    {
-        StartCoroutine(AttackCoroutine());
-    }
-}
-
-
-
-
-    //animacion dash
     IEnumerator DashCoroutine()
     {
         isDashing = true;
         lastDashTime = Time.time;
-        // Activar el dash
         animator.SetTrigger("dash");
 
         float direction = spriteRenderer.flipX ? -1f : 1f;
@@ -105,7 +113,6 @@ void Update()
         isDashing = false;
     }
 
-    //animacion ataque
     IEnumerator AttackCoroutine()
     {
         isAttacking = true;
@@ -118,7 +125,7 @@ void Update()
             Vida vidaEnemigo = enemigo.GetComponent<Vida>();
             if (vidaEnemigo != null)
             {
-                vidaEnemigo.RecibirDanio(3); // Mata al enemigo con un solo golpe
+                vidaEnemigo.RecibirDanio(3);
             }
         }
 
@@ -128,22 +135,13 @@ void Update()
         isAttacking = false;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    // Dibuja el círculo de detección en el editor
+    void OnDrawGizmosSelected()
     {
-        foreach (ContactPoint2D contact in coll.contacts)
+        if (groundCheck != null)
         {
-            if (contact.normal.y > 0.5f)
-            {
-                isGrounded = true;
-                animator.SetBool("isJumping", false);
-                animator.SetBool("isFalling", false);
-                return;
-            }
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
-    }
-
-    void OnCollisionExit2D(Collision2D coll)
-    {
-        isGrounded = false;
     }
 }

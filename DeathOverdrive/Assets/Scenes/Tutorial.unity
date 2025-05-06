@@ -2663,6 +2663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1. Idle 48 x 48_0
       objectReference: {fileID: 0}
+    - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: dashSound
       value: 

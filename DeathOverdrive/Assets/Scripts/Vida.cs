@@ -31,7 +31,6 @@ public class Vida : MonoBehaviour
 
     private void Morir()
     {
-<<<<<<< Updated upstream
         Debug.Log(gameObject.name + " ha muerto.");
 
         Seguir_Jugador_Area enemigo = GetComponent<Seguir_Jugador_Area>();
@@ -41,8 +40,7 @@ public class Vida : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Para otros objetos sin animaciones especiales
-=======
+        // Destroy(gameObject); // Para otros objetos sin animaciones especiales
         if (!esJugador)
         {
             Destroy(gameObject);
@@ -51,7 +49,6 @@ public class Vida : MonoBehaviour
         {
             // El jugador no se destruye aquí
             Debug.Log("Jugador muerto (controlado por VidaJugadorManager)");
->>>>>>> Stashed changes
         }
     }
 }

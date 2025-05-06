@@ -40,15 +40,7 @@ public class Vida : MonoBehaviour
         }
         else
         {
-        // Destroy(gameObject); // Para otros objetos sin animaciones especiales
-        if (!esJugador)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            // El jugador no se destruye aquí
-            Debug.Log("Jugador muerto (controlado por VidaJugadorManager)");
+        Destroy(gameObject); // Para otros objetos sin animaciones especiales
         }
     }
 }

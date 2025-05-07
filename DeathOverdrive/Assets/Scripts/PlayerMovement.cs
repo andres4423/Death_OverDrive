@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
     // Componentes
@@ -37,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 1)] public float dashVolume = 0.5f;
     public AudioClip landingSound;
     [Range(0, 1)] public float landingVolume = 0.4f;
+    public GameObject panelCristal;
 
     void Start()
     {
@@ -208,5 +208,14 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = false;
         wasGrounded = false;
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.gameObject.CompareTag("Cristal"))
+    {
+        panelCristal.SetActive(true);
+        Debug.Log("Panel activado por contacto con cristal.");
+    }
+}
 
 }

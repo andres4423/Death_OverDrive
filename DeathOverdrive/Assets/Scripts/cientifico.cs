@@ -65,13 +65,16 @@ public class cientifico : MonoBehaviour
                 break;
         }
 
-            if (Input.GetKeyDown(KeyCode.K) && !hasDied)
-            {
-                animator.SetTrigger("die");
-                hasDied = true;
-                StartCoroutine(DestruirDespuesDeAnimacion());
-                Instantiate(cristal, transform.position, Quaternion.identity);
-            }
+        if (Input.GetKeyDown(KeyCode.K) && !hasDied)
+        {
+            animator.SetTrigger("die");
+            animator.SetBool("isWalkingG", false); // <--- Esta línea es la que necesitas
+            animator.SetBool("isAttackingG", false); // <--- Esta línea es la que necesitas
+            hasDied = true;
+            StartCoroutine(DestruirDespuesDeAnimacion());
+            Instantiate(cristal, transform.position, Quaternion.identity);
+        }
+
 
 
     }

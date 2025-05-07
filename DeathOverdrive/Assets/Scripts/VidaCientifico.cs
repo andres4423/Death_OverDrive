@@ -5,6 +5,8 @@ public class VidaCientifico : MonoBehaviour
     public int vidaMaxima = 3;
     private int vidaActual;
 
+    
+
     void Start()
     {
         vidaActual = vidaMaxima;
@@ -24,6 +26,10 @@ public class VidaCientifico : MonoBehaviour
     private void Morir()
     {
         Debug.Log(gameObject.name + " ha muerto.");
-        Destroy(gameObject); // Destruye el objeto al morir
+
+        // Instanciar el cristal en la posición del objeto
+
+        // Destruir este objeto
+        Destroy(gameObject);
     }
 }

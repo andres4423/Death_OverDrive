@@ -16,7 +16,8 @@ public class cientifico : MonoBehaviour
     public float distanciaAtaque = 1.0f; // O prueba con 1.5f o más
     public float tiempoEntreAtaques = 3f; // Tiempo de espera entre ataques
     private bool puedeAtacar = true; // Controla el tiempo de ataque
-
+    private bool hasDied = false;
+    public GameObject cristal; // Aquí usas el nombre "cristal"
     public enum EstadosMovimiento
     {
         Esperando,
@@ -63,6 +64,15 @@ public class cientifico : MonoBehaviour
                 EstadoVolviendo();
                 break;
         }
+
+            if (Input.GetKeyDown(KeyCode.K) && !hasDied)
+            {
+                animator.SetTrigger("die");
+                hasDied = true;
+                StartCoroutine(DestruirDespuesDeAnimacion());
+                Instantiate(cristal, transform.position, Quaternion.identity);
+            }
+
 
     }
 
@@ -189,20 +199,22 @@ public class cientifico : MonoBehaviour
         Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);
     }
 
-    // public void Morir()
-    // {
-    //     animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
-    //     GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
-    //     this.enabled = false; // Desactiva el script para que deje de moverse
+    public void Morir()
+    {
+        animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
+        GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
+        this.enabled = false; // Desactiva el script para que deje de moverse
 
-    //     StartCoroutine(DestruirDespuesDeAnimacion());
-    // }
+        StartCoroutine(DestruirDespuesDeAnimacion());
+        Instantiate(cristal, transform.position, Quaternion.identity);
 
-    // IEnumerator DestruirDespuesDeAnimacion()
-    // {
-    //     yield return new WaitForSeconds(1.25f);
-    //     Destroy(gameObject);
-    // }
+    }
+
+    IEnumerator DestruirDespuesDeAnimacion()
+    {
+        yield return new WaitForSeconds(1.25f);
+        Destroy(gameObject);
+    }
 
 
 }

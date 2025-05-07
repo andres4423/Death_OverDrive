@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7361268392516884028}
   m_Layer: 6
   m_Name: cristal
-  m_TagString: 'Cristal '
+  m_TagString: Cristal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

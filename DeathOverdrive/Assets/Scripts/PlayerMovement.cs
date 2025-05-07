@@ -148,10 +148,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (enemigo != null)
         {
+            // Verificamos si tiene Vida
             Vida vidaEnemigo = enemigo.GetComponent<Vida>();
             if (vidaEnemigo != null)
             {
                 vidaEnemigo.RecibirDanio(3);
+            }
+            else
+            {
+                // Si no tiene Vida, verificamos si tiene VidaCientifico
+                VidaCientifico vidaCientifico = enemigo.GetComponent<VidaCientifico>();
+                if (vidaCientifico != null)
+                {
+                    vidaCientifico.RecibirDanio(3);
+                }
             }
         }
 
@@ -160,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("attack", false);
         isAttacking = false;
     }
+
 
     // Dibuja el círculo de detección en el editor
     void OnDrawGizmosSelected()

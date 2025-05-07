@@ -36,4 +36,13 @@ public class VidaJugadorManager : MonoBehaviour
         Debug.Log("El jugador ha muerto.");
         // Aquí puedes activar una pantalla de Game Over, reiniciar nivel, etc.
     }
+
+    public void MejorarVida(int cantidad)
+    {
+        vidaMaxima += cantidad;
+        vidaActual = vidaMaxima; // Restaurar vida al máximo
+        Debug.Log("Vida mejorada. Nueva vida máxima: " + vidaMaxima);
+    }
+
+
 }

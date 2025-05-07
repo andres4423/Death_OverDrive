@@ -5,7 +5,7 @@ using TMPro;
 public class CambioConHistoria : MonoBehaviour
 {
     [Header("Configuración")]
-    public GameObject panelHistoria; 
+    public GameObject panelHistoria;
     public TextMeshProUGUI textoTMP; // Referencia al TextMeshProUGUI
     public int idEscena = 1;
 
@@ -18,7 +18,7 @@ public class CambioConHistoria : MonoBehaviour
             panelHistoria.SetActive(true);
             mostrarHistoria = true;
             Time.timeScale = 0f; // Pausa el juego
-            
+
             // El texto ya aparece completo (sin typewriter)
             // No hay necesidad de corrutinas aquí
         }
@@ -30,9 +30,19 @@ public class CambioConHistoria : MonoBehaviour
         if (mostrarHistoria && Input.GetKeyDown(KeyCode.Return))
         {
             Time.timeScale = 1f;
+
+            // Verifica si VidaJugadorManager existe, si no, lo crea
+            if (VidaJugadorManager.Instance == null)
+            {
+                GameObject managerObject = new GameObject("VidaJugadorManager");
+                managerObject.AddComponent<VidaJugadorManager>();
+            }
+
+            VidaJugadorManager.Instance.MejorarVida(1); // Aumenta vida antes de cambiar de escena
             CargarEscenaPorID();
         }
     }
+
 
     private void CargarEscenaPorID()
     {

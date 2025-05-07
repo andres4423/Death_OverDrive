@@ -2,29 +2,26 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    public int vidaMaxima = 3;
-    private int vidaActual;
-
-    public bool esJugador = false; // ← Añadido
-
-    void Start()
-    {
-        vidaActual = vidaMaxima;
-    }
+    public bool esJugador = false;
 
     public void RecibirDanio(int cantidad)
     {
-        vidaActual -= cantidad;
-
-        Debug.Log(gameObject.name + " recibió daño. Vida restante: " + vidaActual);
+        Debug.Log(gameObject.name + " recibió daño.");
 
         if (esJugador)
         {
+            // Delegar el daño al VidaJugadorManager
             VidaJugadorManager.Instance?.RecibirDanio(cantidad);
-        }
 
-        if (vidaActual <= 0)
+            // Verificar si ha muerto
+            if (VidaJugadorManager.Instance.vidaActual <= 0)
+            {
+                Morir();
+            }
+        }
+        else
         {
+            // Aquí manejas el daño de enemigos u otros objetos
             Morir();
         }
     }
@@ -36,11 +33,10 @@ public class Vida : MonoBehaviour
         Seguir_Jugador_Area enemigo = GetComponent<Seguir_Jugador_Area>();
         if (enemigo != null)
         {
-            enemigo.Morir(); // Usa la animación y luego destruye
+            enemigo.transformJugador = null; // Notificas al enemigo que el jugador ya no está
         }
-        else
-        {
-        Destroy(gameObject); // Para otros objetos sin animaciones especiales
-        }
+
+        Destroy(gameObject);
     }
+
 }

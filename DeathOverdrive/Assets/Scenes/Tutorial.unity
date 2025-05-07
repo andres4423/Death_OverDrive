@@ -976,6 +976,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &861714082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 701716032353236440, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+  m_PrefabInstance: {fileID: 572113295424643523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1042579029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1380,7 @@ GameObject:
   - component: {fileID: 1692022473}
   - component: {fileID: 1692022472}
   - component: {fileID: 1692022474}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2601,6 +2606,14 @@ PrefabInstance:
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Name
       value: 1. Idle 48 x 48_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 861714082}
+    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8574112180057744636, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_LocalPosition.x

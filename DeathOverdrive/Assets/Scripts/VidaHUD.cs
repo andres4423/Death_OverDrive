@@ -5,10 +5,15 @@ public class VidaHUD : MonoBehaviour
 {
     public Slider vidaSlider;
 
-    void Start()
+    void OnEnable()
     {
-        vidaSlider.maxValue = VidaJugadorManager.Instance.vidaMaxima;
+        if (VidaJugadorManager.Instance != null)
+        {
+            vidaSlider.maxValue = VidaJugadorManager.Instance.vidaMaxima;
+            vidaSlider.value = VidaJugadorManager.Instance.vidaActual;
+        }
     }
+
 
     void Update()
     {

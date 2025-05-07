@@ -71,7 +71,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
         animator.SetBool("isWalkingG", false);
 
         Collider2D jugadorCollider = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
-        
+
         if (jugadorCollider)
         {
             transformJugador = jugadorCollider.transform;
@@ -114,6 +114,14 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void EstadoAtacando()
     {
+        // Verificamos si el jugador sigue existiendo
+        if (transformJugador == null)
+        {
+            estadoActual = EstadosMovimiento.Volviendo;
+            animator.SetBool("isAttackingG", false);
+            return;
+        }
+
         animator.SetBool("isWalkingG", false);
         animator.SetBool("isAttackingG", true);
 
@@ -139,6 +147,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
             animator.SetBool("isAttackingG", false);
         }
     }
+
 
 
     private void ReiniciarAtaque()

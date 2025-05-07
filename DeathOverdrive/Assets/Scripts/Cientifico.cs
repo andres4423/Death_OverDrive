@@ -64,6 +64,11 @@ public class Cientifico : MonoBehaviour
                 break;
         }
 
+            if (Input.GetKeyDown(KeyCode.K))
+    {
+        animator.SetTrigger("die");
+    }
+
     }
 
 
@@ -189,20 +194,20 @@ public class Cientifico : MonoBehaviour
         Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);
     }
 
-//     public void Morir()
-//     {
-//         animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
-//         GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
-//         this.enabled = false; // Desactiva el script para que deje de moverse
+    public void Morir()
+    {
+        animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
+        GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
+        this.enabled = false; // Desactiva el script para que deje de moverse
 
-//         StartCoroutine(DestruirDespuesDeAnimacion());
-//     }
+        StartCoroutine(DestruirDespuesDeAnimacion());
+    }
 
-//     IEnumerator DestruirDespuesDeAnimacion()
-//     {
-//         yield return new WaitForSeconds(1.25f);
-//         Destroy(gameObject);
-// }
+    IEnumerator DestruirDespuesDeAnimacion()
+    {
+        yield return new WaitForSeconds(1.25f);
+        Destroy(gameObject);
+}
 
 
 }

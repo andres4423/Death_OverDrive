@@ -22,15 +22,8 @@ public class Vida : MonoBehaviour
     }
 
     private void Morir()
-        {
-            Debug.Log(gameObject.name + " ha muerto.");
-
-            Seguir_Jugador_Area enemigo = GetComponent<Seguir_Jugador_Area>();
-            if (enemigo != null)
-            {
-                enemigo.transformJugador = null; // Notificas al enemigo que el jugador ya no está
-            }
-
-            Destroy(gameObject);
-        }
+    {
+        Debug.Log(gameObject.name + " ha muerto.");
+        Destroy(gameObject); // Destruye el objeto al morir
+    }
 }

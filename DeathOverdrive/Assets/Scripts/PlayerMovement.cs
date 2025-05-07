@@ -165,6 +165,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (groundCheck != null)
         {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+    }
+
+ void OnCollisionEnter2D(Collision2D coll)
+    {
+        foreach (ContactPoint2D contact in coll.contacts)
+        {
             if (contact.normal.y > 0.5f)
             {
                 // Sonido de aterrizaje solo si venía del aire
@@ -187,4 +196,5 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = false;
         wasGrounded = false;
     }
+
 }

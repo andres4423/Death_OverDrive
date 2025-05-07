@@ -179,12 +179,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Neo Elysium, 2147. La ciudad respira bajo el yugo de Eon Corp.\r\n\r\nLos
     implantes de Kael Draven a\xFAn arden tras el primer uso del N\xFAcleo Temporal.
-    El dispositivo, incrustado en su pecho, late como un coraz\xF3n mec\xE1nico,
-    record\xE1ndole que cada salto lo acerca al colapso.\r\n\r\nPero no hay tiempo
-    para dudas.\r\n\r\nEon Corp ya lo busca.\r\n\r\nEn las calles inundadas de ne\xF3n
-    y vigilancia corporativa, los mercenarios de la corporaci\xF3n rastrean su se\xF1al.
-    Alguien vendi\xF3 su ubicaci\xF3n... y solo hay una forma de sobrevivir: adentrarse
-    en las sombras de la ciudad para descubrir la verdad detr\xE1s del Chrono Singularity.\r\n\r\n\n\nEl
+    El dispositivo, incrustado en su pecho, late como un coraz\xF3n mec\xE1nico, record\xE1ndole
+    que cada salto lo acerca al colapso.\r\n\r\nPero no hay tiempo para dudas.\r\n\r\nEon
+    Corp ya lo busca.\r\n\r\nEn las calles inundadas de ne\xF3n y vigilancia corporativa,
+    los mercenarios de la corporaci\xF3n rastrean su se\xF1al. Alguien vendi\xF3 su
+    ubicaci\xF3n... y solo hay una forma de sobrevivir: adentrarse en las sombras
+    de la ciudad para descubrir la verdad detr\xE1s del Chrono Singularity.\r\n\r\n\n\nEl
     juego comienza.\n\nPresiona Enter"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2b2c1308a6690a44a512b06cbe6f4e8, type: 2}
@@ -986,6 +986,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &861714082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 701716032353236440, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+  m_PrefabInstance: {fileID: 572113295424643523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &666489064 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8958545731610658193, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
@@ -1396,7 +1401,7 @@ GameObject:
   - component: {fileID: 1692022473}
   - component: {fileID: 1692022472}
   - component: {fileID: 1692022474}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2706,6 +2711,14 @@ PrefabInstance:
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_Name
       value: 1. Idle 48 x 48_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 861714082}
+    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_IsActive

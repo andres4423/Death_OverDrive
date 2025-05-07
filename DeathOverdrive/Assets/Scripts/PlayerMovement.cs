@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     // Movimiento básico
     private float speed = 3f;
     private float jumpForce = 6.4f;
+
+    // GroundCheck variables
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.1f;
+    public LayerMask groundLayer;
     private bool isGrounded;
     private bool wasGrounded; // Para detectar cuando acaba de aterrizar
 
@@ -49,6 +54,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Revisión del suelo
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+        }
+
+
         if (isDashing || isAttacking) return;
 
         float move = Input.GetAxisRaw("Horizontal");
@@ -145,9 +160,10 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = false;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    // Dibuja el círculo de detección en el editor
+    void OnDrawGizmosSelected()
     {
-        foreach (ContactPoint2D contact in coll.contacts)
+        if (groundCheck != null)
         {
             if (contact.normal.y > 0.5f)
             {

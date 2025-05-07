@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Seguir_Jugador_Area : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
         animator.SetBool("isWalkingG", false);
 
         Collider2D jugadorCollider = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
-        
+
         if (jugadorCollider)
         {
             transformJugador = jugadorCollider.transform;
@@ -97,7 +98,8 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
 
         // Movimiento y animación de caminar
-        transform.position = Vector2.MoveTowards(transform.position, transformJugador.position, velocidadMovimiento * Time.deltaTime);
+        Vector3 objetivoPosicion = new Vector3(transformJugador.position.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, objetivoPosicion, velocidadMovimiento * Time.deltaTime);
         animator.SetBool("isWalkingG", true);
         animator.SetBool("isAttackingG", false);
 
@@ -112,6 +114,14 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void EstadoAtacando()
     {
+        // Verificamos si el jugador sigue existiendo
+        if (transformJugador == null)
+        {
+            estadoActual = EstadosMovimiento.Volviendo;
+            animator.SetBool("isAttackingG", false);
+            return;
+        }
+
         animator.SetBool("isWalkingG", false);
         animator.SetBool("isAttackingG", true);
 
@@ -139,6 +149,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
     }
 
 
+
     private void ReiniciarAtaque()
     {
         puedeAtacar = true;
@@ -148,7 +159,8 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void EstadoVolviendo()
     {
-        transform.position = Vector2.MoveTowards(transform.position, puntoInicial, velocidadMovimiento * Time.deltaTime);
+        Vector3 volverPosicion = new Vector3(puntoInicial.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, volverPosicion, velocidadMovimiento * Time.deltaTime);
         animator.SetBool("isWalkingG", true);
 
         GirarAObjetivo(puntoInicial);
@@ -184,4 +196,21 @@ public class Seguir_Jugador_Area : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radioBusqueda);
         Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);
     }
+
+    public void Morir()
+    {
+        animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
+        GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
+        this.enabled = false; // Desactiva el script para que deje de moverse
+
+        StartCoroutine(DestruirDespuesDeAnimacion());
+    }
+
+    IEnumerator DestruirDespuesDeAnimacion()
+    {
+        yield return new WaitForSeconds(1.25f);
+        Destroy(gameObject);
+    }
+
+
 }

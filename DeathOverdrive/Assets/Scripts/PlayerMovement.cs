@@ -184,7 +184,8 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         animator.SetBool("attack", true);
 
-        Collider2D enemigo = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Enemigo"));
+        Collider2D enemigo = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Enemigo","Cientifico"));
+        
 
         if (enemigo != null)
         {

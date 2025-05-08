@@ -1187,11 +1187,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3894736607003950743, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
   m_PrefabInstance: {fileID: 5904783664056693957}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &893837478 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 701716032353236440, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-  m_PrefabInstance: {fileID: 2016834569}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &896805976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,19 +1493,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
   m_PrefabInstance: {fileID: 2016834569}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1194611969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194611962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  esJugador: 1
 --- !u!1 &1249975515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2672,34 +2654,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1. Idle 48 x 48_0
       objectReference: {fileID: 0}
-    - target: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: dashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2a5565bbfd839c64ab74482704161cc3, type: 3}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: dashVolume
-      value: 0.049
-      objectReference: {fileID: 0}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 893837478}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: landingSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 07d8d11b8912bd647a65bef8acdd9aa7, type: 3}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: landingVolume
-      value: 0.049
-      objectReference: {fileID: 0}
-    - target: {fileID: 6705697500469552148, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8574112180057744636, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.25
@@ -2740,17 +2694,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9092406904274016762, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1057909990255123882, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1194611969}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be80ad7b15aea4b4bb48cc66404f9ede, type: 3}
 --- !u!1 &2079589516
 GameObject:

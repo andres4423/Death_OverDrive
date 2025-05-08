@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4955172006976287157}
   - component: {fileID: 3803073802210438315}
   - component: {fileID: 6705697500469552148}
-  m_Layer: 0
+  - component: {fileID: 5433758158641714928}
+  m_Layer: 6
   m_Name: 1. Idle 48 x 48_0
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -200,15 +201,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f953671c98dc5848b96f3757e8c45f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 701716032353236440}
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   dashSpeed: 8
   dashTime: 0.2
   dashCooldown: 1
   attackDuration: 0.3
+  dashSound: {fileID: 8300000, guid: 2a5565bbfd839c64ab74482704161cc3, type: 3}
+  dashVolume: 0.049
+  landingSound: {fileID: 8300000, guid: 07d8d11b8912bd647a65bef8acdd9aa7, type: 3}
+  landingVolume: 0.049
+  panelCristal: {fileID: 0}
+  slowMotionFactor: 0.3
+--- !u!114 &5433758158641714928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057909990255123882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  esJugador: 1
 --- !u!1 &7485180098181559501
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +271,7 @@ GameObject:
   - component: {fileID: 2369322019095976269}
   - component: {fileID: 3539847389697036197}
   - component: {fileID: 116971398148489682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particula
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -196,3 +196,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   esJugador: 0
+  vidaMaxima: 2

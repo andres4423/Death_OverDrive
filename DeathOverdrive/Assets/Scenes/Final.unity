@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 191170959}
   - component: {fileID: 191170961}
   - component: {fileID: 191170960}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,9 +343,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6531413060007164786, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723120492212123539, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661919328373689320, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330337391234199909, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9002380978407698060, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002380978407698060, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9002380978407698060, guid: 45a9a2a89b6d780479bac54eb4529597, type: 3}
       propertyPath: m_IsActive
@@ -531,7 +551,7 @@ GameObject:
   - component: {fileID: 322509549}
   - component: {fileID: 322509551}
   - component: {fileID: 322509550}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,7 +688,7 @@ GameObject:
   - component: {fileID: 350384257}
   - component: {fileID: 350384256}
   - component: {fileID: 350384255}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2011,7 +2031,7 @@ GameObject:
   - component: {fileID: 950778119}
   - component: {fileID: 950778121}
   - component: {fileID: 950778120}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: panelContinuara
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2244,7 +2264,7 @@ GameObject:
   - component: {fileID: 1042882637}
   - component: {fileID: 1042882636}
   - component: {fileID: 1042882639}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2556,6 +2576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   esJugador: 0
+  vidaMaxima: 30
 --- !u!114 &1224408036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2579,7 +2600,7 @@ MonoBehaviour:
   mirandoDerecha: 0
   estadoActual: 0
   distanciaAtaque: 1
-  tiempoEntreAtaques: 5
+  tiempoEntreAtaques: 1.5
   cristal: {fileID: 6007278551111612335, guid: 95f6b126412c86d47acc7f80c1825562, type: 3}
 --- !u!114 &1224408037
 MonoBehaviour:
@@ -2605,7 +2626,7 @@ GameObject:
   - component: {fileID: 1377555503}
   - component: {fileID: 1377555505}
   - component: {fileID: 1377555504}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2907,7 +2928,7 @@ GameObject:
   - component: {fileID: 1685908178}
   - component: {fileID: 1685908180}
   - component: {fileID: 1685908179}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: panelCristal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2987,7 +3008,7 @@ GameObject:
   - component: {fileID: 1700429198}
   - component: {fileID: 1700429197}
   - component: {fileID: 1700429200}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3182,6 +3203,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 648519707698441333, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602853954941628078, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204411527082911111, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270644107865259865, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3894736607003950743, guid: bee31a3dd8e78dc418f5e61bd0cbe137, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3349,7 +3386,7 @@ GameObject:
   - component: {fileID: 1915268046}
   - component: {fileID: 1915268048}
   - component: {fileID: 1915268047}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3596,7 +3633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  esJugador: 0
+  esJugador: 1
+  vidaMaxima: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

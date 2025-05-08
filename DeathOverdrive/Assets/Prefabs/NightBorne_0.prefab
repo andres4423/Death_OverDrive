@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   esJugador: 0
+  vidaMaxima: 3
 --- !u!61 &6588996326338671370
 BoxCollider2D:
   m_ObjectHideFlags: 0

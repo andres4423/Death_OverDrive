@@ -25,11 +25,14 @@ public class VidaCientifico : MonoBehaviour
 
     private void Morir()
     {
-        Debug.Log(gameObject.name + " ha muerto.");
-
-        // Instanciar el cristal en la posición del objeto
-
-        // Destruir este objeto
-        Destroy(gameObject);
+        if (TryGetComponent<Seguir_Jugador_Area>(out var cientifico))
+        {
+            cientifico.transformJugador = null;
+            cientifico.Morir(); // ✅ Llama al método Morir() del enemigo para animación + delay
+        }
+        else
+        {
+            Destroy(gameObject); // Solo destruye directamente si NO es enemigo (por ejemplo, otros objetos)
+        }
     }
 }

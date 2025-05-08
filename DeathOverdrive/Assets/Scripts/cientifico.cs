@@ -212,7 +212,7 @@ public class cientifico : MonoBehaviour
     public void Morir()
     {
         animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
-        GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
+        GetComponent<Collider2D>().enabled = false; // Evitar colisiones durante animación
         this.enabled = false; // Desactiva el script para que deje de moverse
 
         StartCoroutine(DestruirDespuesDeAnimacion());

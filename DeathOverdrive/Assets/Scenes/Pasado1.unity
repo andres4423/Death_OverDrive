@@ -2947,6 +2947,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 919625121194255811, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1047.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 919625121194255811, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 165.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192179513397557843, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_margin.x
+      value: -364.22815
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192179513397557843, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_margin.z
+      value: -131.52165
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143333480319557962, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2252467131789117874, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3031,12 +3051,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6104341524734203828, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1559.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104341524734203828, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 595.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104341524734203828, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104341524734203828, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6634418529906095021, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8722354654800574344, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4310925838923719199, guid: 8f3b52ee411becf4393fbf1cf42d0deb, type: 3}
       insertIndex: -1

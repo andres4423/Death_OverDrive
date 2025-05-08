@@ -12,9 +12,9 @@ public class Seguir_Jugador_Area : MonoBehaviour
     public bool mirandoDerecha;
     private Animator animator;
     public EstadosMovimiento estadoActual;
-    public float distanciaAtaque = 1.0f; // O prueba con 1.5f o más
-    public float tiempoEntreAtaques = 3f; // Tiempo de espera entre ataques
-    private bool puedeAtacar = true; // Controla el tiempo de ataque
+    public float distanciaAtaque = 1.0f;
+    public float tiempoEntreAtaques = 3f;
+    private bool puedeAtacar = true;
 
     public enum EstadosMovimiento
     {
@@ -26,7 +26,7 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     public void Start()
     {
-        animator = GetComponent<Animator>(); // Obtiene el Animator del enemigo
+        animator = GetComponent<Animator>();
 
         if (transformJugador == null)
         {
@@ -44,7 +44,6 @@ public class Seguir_Jugador_Area : MonoBehaviour
         puntoInicial = transform.position;
     }
 
-
     void Update()
     {
         switch (estadoActual)
@@ -55,16 +54,14 @@ public class Seguir_Jugador_Area : MonoBehaviour
             case EstadosMovimiento.Siguiendo:
                 EstadoSiguiendo();
                 break;
-            case EstadosMovimiento.Atacando: // ¡Asegúrate de incluir esto!
+            case EstadosMovimiento.Atacando:
                 EstadoAtacando();
                 break;
             case EstadosMovimiento.Volviendo:
                 EstadoVolviendo();
                 break;
         }
-
     }
-
 
     private void EstadoEsperando()
     {
@@ -74,10 +71,16 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
         if (jugadorCollider)
         {
-            transformJugador = jugadorCollider.transform;
-            estadoActual = EstadosMovimiento.Siguiendo;
+            float diferenciaAltura = Mathf.Abs(jugadorCollider.transform.position.y - transform.position.y);
+
+            if (diferenciaAltura < 0.5f) // Ajusta este valor según lo que consideres "misma altura"
+            {
+                transformJugador = jugadorCollider.transform;
+                estadoActual = EstadosMovimiento.Siguiendo;
+            }
         }
     }
+
 
     private void EstadoSiguiendo()
     {
@@ -89,21 +92,34 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
         float distancia = Vector2.Distance(transform.position, transformJugador.position);
 
-
         if (distancia <= distanciaAtaque)
         {
             estadoActual = EstadosMovimiento.Atacando;
             return;
         }
 
+        // **Movemos al enemigo ajustando la velocidad si hay slow motion**
+        float velocidadAjustada = velocidadMovimiento;
+        if (SlowMotionManager.Instance != null && SlowMotionManager.Instance.IsInSlowMotion)
+        {
+            velocidadAjustada *= 0.5f; // Ajusta este valor para sincronizarlo
+        }
 
-        // Movimiento y animación de caminar
         Vector3 objetivoPosicion = new Vector3(transformJugador.position.x, transform.position.y, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, objetivoPosicion, velocidadMovimiento * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, objetivoPosicion, velocidadAjustada * Time.deltaTime);
         animator.SetBool("isWalkingG", true);
         animator.SetBool("isAttackingG", false);
 
+        float diferenciaAltura = Mathf.Abs(transformJugador.position.y - transform.position.y);
+
         GirarAObjetivo(transformJugador.position);
+
+        if (diferenciaAltura > 0.5f)
+        {
+            estadoActual = EstadosMovimiento.Volviendo;
+            transformJugador = null;
+            return;
+        }
 
         if (distancia > distanciaMaxima)
         {
@@ -114,7 +130,6 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     private void EstadoAtacando()
     {
-        // Verificamos si el jugador sigue existiendo
         if (transformJugador == null)
         {
             estadoActual = EstadosMovimiento.Volviendo;
@@ -128,15 +143,14 @@ public class Seguir_Jugador_Area : MonoBehaviour
         if (puedeAtacar)
         {
             puedeAtacar = false;
-
-            // Verifica si el jugador tiene un script de vida y le aplica daño
             Vida vidaJugador = transformJugador.GetComponent<Vida>();
             if (vidaJugador != null)
             {
                 vidaJugador.RecibirDanio(1);
             }
 
-            Invoke("ReiniciarAtaque", tiempoEntreAtaques);
+            // Cambiamos el Invoke por una corrutina que respete el slow motion
+            StartCoroutine(ReiniciarAtaqueCoroutine());
         }
 
         float distancia = Vector2.Distance(transform.position, transformJugador.position);
@@ -148,14 +162,13 @@ public class Seguir_Jugador_Area : MonoBehaviour
         }
     }
 
-
-
-    private void ReiniciarAtaque()
+    // Usamos una corrutina en vez de Invoke para respetar el slow motion
+    IEnumerator ReiniciarAtaqueCoroutine()
     {
+        float tiempoEspera = SlowMotionManager.Instance.IsInSlowMotion ? tiempoEntreAtaques * 2f : tiempoEntreAtaques;
+        yield return new WaitForSecondsRealtime(tiempoEspera);
         puedeAtacar = true;
     }
-
-
 
     private void EstadoVolviendo()
     {
@@ -186,21 +199,13 @@ public class Seguir_Jugador_Area : MonoBehaviour
     private void Girar()
     {
         mirandoDerecha = !mirandoDerecha;
-
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radioBusqueda);
-        Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);
     }
 
     public void Morir()
     {
         animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
-        GetComponent<Collider2D>().enabled = false; // Opcional: evitar colisiones durante animación
+        GetComponent<Collider2D>().enabled = false; // Evitar colisiones durante animación
         this.enabled = false; // Desactiva el script para que deje de moverse
 
         StartCoroutine(DestruirDespuesDeAnimacion());
@@ -208,8 +213,8 @@ public class Seguir_Jugador_Area : MonoBehaviour
 
     IEnumerator DestruirDespuesDeAnimacion()
     {
-        yield return new WaitForSeconds(1.25f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(1.25f); // Espera la animación de muerte
+        Destroy(gameObject); // Destruye al enemigo
     }
 
 

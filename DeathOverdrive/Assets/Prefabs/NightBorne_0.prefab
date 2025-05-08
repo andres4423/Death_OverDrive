@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 2169868960129596244}
   - component: {fileID: 7056750959593311887}
   - component: {fileID: 9219937710196566478}
-  m_Layer: 0
+  - component: {fileID: 1204124129237454461}
+  - component: {fileID: 1079946230219338980}
+  - component: {fileID: 6588996326338671370}
+  m_Layer: 7
   m_Name: NightBorne_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,3 +113,86 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1204124129237454461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593644450180055564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375cb56e7ce0e744da38672f0a271f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radioBusqueda: 4.87
+  capaJugador:
+    serializedVersion: 2
+    m_Bits: 64
+  transformJugador: {fileID: 0}
+  velocidadMovimiento: 2
+  distanciaMaxima: 8
+  puntoInicial: {x: 0, y: 0, z: 0}
+  mirandoDerecha: 1
+  estadoActual: 0
+  distanciaAtaque: 1
+  tiempoEntreAtaques: 1.5
+--- !u!114 &1079946230219338980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593644450180055564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf85d3356fb6ee43b7c506ab6138f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  esJugador: 0
+--- !u!61 &6588996326338671370
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593644450180055564}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.35638332, y: 0.2181263}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.6629181, y: 0.3796548}
+    oldSize: {x: 2.1875, y: 1.8125}
+    newSize: {x: 2.1875, y: 1.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 1
+  m_Size: {x: 2.1875, y: 1.8125}
+  m_EdgeRadius: 0

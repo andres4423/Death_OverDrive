@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+
 public class PlayerMovement : MonoBehaviour
 {
     // Componentes
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
     private bool isGrounded;
-    private bool wasGrounded; // Para detectar cuando acaba de aterrizar
+    private bool wasGrounded;
 
     // Dash
     public float dashSpeed = 8f;
@@ -31,12 +32,18 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     public float attackDuration = 0.15f;
 
-    // Sonidos (solo dash y aterrizaje)
+        // Sonidos (solo dash y aterrizaje)
     public AudioClip dashSound;
     [Range(0, 1)] public float dashVolume = 0.5f;
     public AudioClip landingSound;
     [Range(0, 1)] public float landingVolume = 0.4f;
     public GameObject panelCristal;
+
+    // Slow Motion
+    public float slowMotionFactor = 0.3f;
+    private bool isInSlowMotion = false;
+    public bool IsInvincible { get; private set; } = false;
+
 
     void Start()
     {
@@ -45,12 +52,10 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         particulas = GetComponentInChildren<ParticleSystem>();
-        
-        // Configuración de audio
+
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
-        
-        wasGrounded = true; // Inicialmente está en el suelo
+        wasGrounded = true;
     }
 
     void Update()
@@ -64,9 +69,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
 
-
         if (isDashing || isAttacking) return;
 
+        // === MOVIMIENTO ===
         float move = Input.GetAxisRaw("Horizontal");
 
         if (move != 0)
@@ -75,18 +80,35 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("speed", Mathf.Abs(move));
             animator.SetBool("IsRunning", true);
             spriteRenderer.flipX = move < 0;
+
+            if (isInSlowMotion)
+            {
+                // Movimiento independiente del slow motion
+                Vector3 movimiento = new Vector3(move * speed, 0, 0) * Time.unscaledDeltaTime;
+                transform.Translate(movimiento);
+            }
+            else
+            {
+                rigidBody.linearVelocity = new Vector2(move * speed, rigidBody.linearVelocity.y);
+            }
         }
         else
         {
             animator.SetBool("IsRunning", false);
             animator.SetFloat("speed", 0);
+
+            if (!isInSlowMotion)
+                rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocity.y);
         }
 
+        // === SALTO ===
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isGrounded = false;
             wasGrounded = false;
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
+
+
             animator.SetBool("isJumping", true);
             animator.SetBool("isFalling", false);
         }
@@ -97,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
 
-        // DASH
+        // === DASH ===
         if (Input.GetKeyDown(KeyCode.E) && Time.time > lastDashTime + dashCooldown)
         {
             float direction = spriteRenderer.flipX ? -1f : 1f;
@@ -114,31 +136,49 @@ public class PlayerMovement : MonoBehaviour
             {
                 audioSource.PlayOneShot(dashSound, dashVolume);
             }
-
             StartCoroutine(DashCoroutine());
         }
 
-        // ATAQUE
+        // === ATAQUE ===
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(AttackCoroutine());
         }
+
+        // === SLOW MOTION ===
+        if (VidaJugadorManager.Instance != null && VidaJugadorManager.Instance.vidaActual == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isInSlowMotion)
+            {
+                ActivateSlowMotion();
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift) && isInSlowMotion)
+            {
+                DeactivateSlowMotion();
+            }
+        }
     }
 
+    // === DASH ===
     IEnumerator DashCoroutine()
     {
         isDashing = true;
+        IsInvincible = true;
         lastDashTime = Time.time;
         animator.SetTrigger("dash");
 
         float direction = spriteRenderer.flipX ? -1f : 1f;
         rigidBody.linearVelocity = new Vector2(direction * dashSpeed, 0);
 
-        yield return new WaitForSeconds(dashTime);
+        float dashDuration = isInSlowMotion ? dashTime / slowMotionFactor : dashTime; 
+        yield return new WaitForSecondsRealtime(dashDuration); // Repite: REALTIME
 
         isDashing = false;
+        IsInvincible = false;
     }
 
+
+    // === ATAQUE ===
     IEnumerator AttackCoroutine()
     {
         isAttacking = true;
@@ -165,24 +205,33 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(attackDuration);
+        float attackWait = isInSlowMotion ? attackDuration * slowMotionFactor : attackDuration;
+        yield return new WaitForSeconds(attackWait);
 
         animator.SetBool("attack", false);
         isAttacking = false;
     }
 
-
-    // Dibuja el círculo de detección en el editor
-    void OnDrawGizmosSelected()
+    // === SLOW MOTION CONTROL ===
+    void ActivateSlowMotion()
     {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
+        SlowMotionManager.Instance.ActivateSlowMotion();
+        isInSlowMotion = true;
     }
 
- void OnCollisionEnter2D(Collision2D coll)
+    void DeactivateSlowMotion()
+    {
+        SlowMotionManager.Instance.DeactivateSlowMotion();
+        isInSlowMotion = false;
+    }
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        isGrounded = false;
+        wasGrounded = false;
+    }
+
+     void OnCollisionEnter2D(Collision2D coll)
     {
         foreach (ContactPoint2D contact in coll.contacts)
         {
@@ -203,20 +252,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        isGrounded = false;
-        wasGrounded = false;
+        if (other.gameObject.CompareTag("Cristal"))
+        {
+            panelCristal.SetActive(true);
+            Debug.Log("Panel activado por contacto con cristal.");
+        }
     }
-
-void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.gameObject.CompareTag("Cristal"))
-    {
-        panelCristal.SetActive(true);
-        Debug.Log("Panel activado por contacto con cristal.");
-    }
-}
-
 
 }

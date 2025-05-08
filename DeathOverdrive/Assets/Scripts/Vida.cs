@@ -28,15 +28,16 @@ public class Vida : MonoBehaviour
 
     private void Morir()
     {
-        Debug.Log(gameObject.name + " ha muerto.");
-
-        Seguir_Jugador_Area enemigo = GetComponent<Seguir_Jugador_Area>();
-        if (enemigo != null)
+        if (TryGetComponent<Seguir_Jugador_Area>(out var enemigo))
         {
-            enemigo.transformJugador = null; // Notificas al enemigo que el jugador ya no está
+            enemigo.transformJugador = null;
+            enemigo.Morir(); // ✅ Llama al método Morir() del enemigo para animación + delay
         }
-
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject); // Solo destruye directamente si NO es enemigo (por ejemplo, otros objetos)
+        }
     }
+
 
 }

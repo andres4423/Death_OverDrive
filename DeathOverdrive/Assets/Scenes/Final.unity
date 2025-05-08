@@ -2579,7 +2579,7 @@ MonoBehaviour:
   mirandoDerecha: 0
   estadoActual: 0
   distanciaAtaque: 1
-  tiempoEntreAtaques: 1.5
+  tiempoEntreAtaques: 5
   cristal: {fileID: 6007278551111612335, guid: 95f6b126412c86d47acc7f80c1825562, type: 3}
 --- !u!114 &1224408037
 MonoBehaviour:

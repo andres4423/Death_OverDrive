@@ -128,6 +128,13 @@ public class cientifico : MonoBehaviour
 
     private void EstadoAtacando()
     {
+        if (transformJugador == null)
+        {
+            estadoActual = EstadosMovimiento.Esperando;
+            animator.SetBool("isAttackingG", false);
+            return;
+        }
+
         animator.SetBool("isWalkingG", false);
         animator.SetBool("isAttackingG", true);
 
@@ -135,7 +142,6 @@ public class cientifico : MonoBehaviour
         {
             puedeAtacar = false;
 
-            // Verifica si el jugador tiene un script de vida y le aplica daño
             Vida vidaJugador = transformJugador.GetComponent<Vida>();
             if (vidaJugador != null)
             {
@@ -153,6 +159,7 @@ public class cientifico : MonoBehaviour
             animator.SetBool("isAttackingG", false);
         }
     }
+
 
 
     private void ReiniciarAtaque()

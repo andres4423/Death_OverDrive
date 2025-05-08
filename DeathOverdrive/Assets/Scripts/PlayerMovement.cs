@@ -213,7 +213,6 @@ void OnTriggerEnter2D(Collider2D other)
 {
     if (other.gameObject.CompareTag("Cristal"))
     {
-        Time.timeScale = 0f; // Pausar el juego
         panelCristal.SetActive(true);
         Debug.Log("Panel activado por contacto con cristal.");
     }

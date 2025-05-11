@@ -38,17 +38,17 @@ public class Vida : MonoBehaviour
         }
     }
 
-   private void Morir()
+private void Morir()
 {
-    if (TryGetComponent<Seguir_Jugador_Area>(out var enemigo))
+    if (TryGetComponent<Seguir_Jugador_Area>(out var enemigo1))
     {
-        enemigo.transformJugador = null;
-        enemigo.Morir();
+        enemigo1.transformJugador = null;
+        enemigo1.Morir();
     }
-
-    if (TryGetComponent<cientifico>(out var cientifico))
+    else if (TryGetComponent<cientifico>(out var enemigo2))
     {
-        cientifico.Morir();
+        enemigo2.transformJugador = null;
+        enemigo2.Morir();
     }
     else
     {

@@ -211,9 +211,9 @@ public class cientifico : MonoBehaviour
 
     public void Morir()
     {
-        animator.SetTrigger("die");  // Activar el Trigger para la animación de muerte
-        GetComponent<Collider2D>().enabled = false; // Evitar colisiones durante animación
-        this.enabled = false; // Desactiva el script para que deje de moverse
+        Debug.Log("Morí");
+        animator.SetTrigger("die");  
+        GetComponent<Collider2D>().enabled = false;
 
         StartCoroutine(DestruirDespuesDeAnimacion());
         Instantiate(cristal, transform.position, Quaternion.identity);
@@ -223,8 +223,11 @@ public class cientifico : MonoBehaviour
     IEnumerator DestruirDespuesDeAnimacion()
     {
         yield return new WaitForSeconds(1.25f);
+        this.enabled = false;
         Destroy(gameObject);
     }
+
+    
 
 
 }

@@ -32,18 +32,20 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     public float attackDuration = 0.15f;
 
-        // Sonidos (solo dash y aterrizaje)
+    // Sonidos
     public AudioClip dashSound;
     [Range(0, 1)] public float dashVolume = 0.5f;
     public AudioClip landingSound;
     [Range(0, 1)] public float landingVolume = 0.4f;
+
+    // Paneles
     public GameObject panelCristal;
+    public GameObject panelFin;
 
     // Slow Motion
     public float slowMotionFactor = 0.3f;
     private bool isInSlowMotion = false;
     public bool IsInvincible { get; private set; } = false;
-
 
     void Start()
     {
@@ -83,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (isInSlowMotion)
             {
-                // Movimiento independiente del slow motion
                 Vector3 movimiento = new Vector3(move * speed, 0, 0) * Time.unscaledDeltaTime;
                 transform.Translate(movimiento);
             }
@@ -108,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
             wasGrounded = false;
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
 
-
             animator.SetBool("isJumping", true);
             animator.SetBool("isFalling", false);
         }
@@ -124,14 +124,12 @@ public class PlayerMovement : MonoBehaviour
         {
             float direction = spriteRenderer.flipX ? -1f : 1f;
 
-            // Ajustar posición de partículas
             Vector3 particlePosition = particulas.transform.localPosition;
             particlePosition.x = direction < 0 ? Mathf.Abs(particlePosition.x) : -Mathf.Abs(particlePosition.x);
             particulas.transform.localPosition = particlePosition;
 
             particulas.Play();
 
-            // Sonido de dash
             if (dashSound != null)
             {
                 audioSource.PlayOneShot(dashSound, dashVolume);
@@ -157,6 +155,12 @@ public class PlayerMovement : MonoBehaviour
                 DeactivateSlowMotion();
             }
         }
+
+        // === CAÍDA DEL MAPA ===
+        if (transform.position.y < -10f)
+        {
+            MostrarPanelFin();
+        }
     }
 
     // === DASH ===
@@ -170,13 +174,12 @@ public class PlayerMovement : MonoBehaviour
         float direction = spriteRenderer.flipX ? -1f : 1f;
         rigidBody.linearVelocity = new Vector2(direction * dashSpeed, 0);
 
-        float dashDuration = isInSlowMotion ? dashTime / slowMotionFactor : dashTime; 
-        yield return new WaitForSecondsRealtime(dashDuration); // Repite: REALTIME
+        float dashDuration = isInSlowMotion ? dashTime / slowMotionFactor : dashTime;
+        yield return new WaitForSecondsRealtime(dashDuration);
 
         isDashing = false;
         IsInvincible = false;
     }
-
 
     // === ATAQUE ===
     IEnumerator AttackCoroutine()
@@ -184,12 +187,10 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         animator.SetBool("attack", true);
 
-        Collider2D enemigo = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Enemigo","Cientifico"));
-        
+        Collider2D enemigo = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Enemigo", "Cientifico"));
 
         if (enemigo != null)
         {
-            // Verificamos si tiene Vida
             Vida vidaEnemigo = enemigo.GetComponent<Vida>();
             if (vidaEnemigo != null)
             {
@@ -197,7 +198,6 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                // Si no tiene Vida, verificamos si tiene VidaCientifico
                 VidaCientifico vidaCientifico = enemigo.GetComponent<VidaCientifico>();
                 if (vidaCientifico != null)
                 {
@@ -232,13 +232,12 @@ public class PlayerMovement : MonoBehaviour
         wasGrounded = false;
     }
 
-     void OnCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         foreach (ContactPoint2D contact in coll.contacts)
         {
             if (contact.normal.y > 0.5f)
             {
-                // Sonido de aterrizaje solo si venía del aire
                 if (!wasGrounded && landingSound != null)
                 {
                     audioSource.PlayOneShot(landingSound, landingVolume);
@@ -262,4 +261,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // === MOSTRAR PANEL FIN ===
+    void MostrarPanelFin()
+    {
+        if (panelFin != null && !panelFin.activeSelf)
+        {
+            panelFin.SetActive(true);
+            Debug.Log("El jugador cayó del mapa. Mostrando panel de fin.");
+
+            rigidBody.linearVelocity = Vector2.zero;
+            this.enabled = false; // Desactiva el control del jugador
+
+            // Opcional: detener el tiempo
+            // Time.timeScale = 0f;
+        }
+    }
 }

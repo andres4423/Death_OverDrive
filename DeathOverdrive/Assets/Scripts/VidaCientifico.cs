@@ -2,37 +2,54 @@ using UnityEngine;
 
 public class VidaCientifico : MonoBehaviour
 {
-    public int vidaMaxima = 3;
+    public bool esJugador = false;
+
+    [Header("Configuración de Vida")]
+    public int vidaMaxima = 10;
     private int vidaActual;
 
-    
-
-    void Start()
+    private void Start()
     {
         vidaActual = vidaMaxima;
     }
 
     public void RecibirDanio(int cantidad)
     {
-        vidaActual -= cantidad;
-        Debug.Log(gameObject.name + " recibió daño. Vida restante: " + vidaActual);
+        Debug.Log(gameObject.name + " recibió daño: " + cantidad);
 
-        if (vidaActual <= 0)
+        if (esJugador)
         {
-            Morir();
+            VidaJugadorManager.Instance?.RecibirDanio(cantidad);
+
+            if (VidaJugadorManager.Instance.vidaActual <= 0)
+            {
+                Morir();
+            }
+        }
+        else
+        {
+            vidaActual -= cantidad;
+            Debug.Log(gameObject.name + " vida restante: " + vidaActual);
+
+            if (vidaActual <= 0)
+            {
+                Debug.Log("murio cientidfi");
+                Morir();
+                
+            }
         }
     }
 
     private void Morir()
     {
-        if (TryGetComponent<Seguir_Jugador_Area>(out var cientifico))
+        if (TryGetComponent<cientifico>(out var enemigo))
         {
-            cientifico.transformJugador = null;
-            cientifico.Morir(); // ✅ Llama al método Morir() del enemigo para animación + delay
+            enemigo.transformJugador = null;
+            enemigo.Morir();
         }
         else
         {
-            Destroy(gameObject); // Solo destruye directamente si NO es enemigo (por ejemplo, otros objetos)
+            Destroy(gameObject);
         }
     }
 }

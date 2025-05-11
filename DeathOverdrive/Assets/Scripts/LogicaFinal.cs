@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class LogicaFinal : MonoBehaviour
 {
     public GameObject panelCristal;
@@ -13,6 +12,7 @@ public class LogicaFinal : MonoBehaviour
     public float shakeDuration = 0.5f;
     public float shakeMagnitude = 0.3f;
 
+    // Método para cambiar al panel de "Continuará"
     public void CambiarDestino()
     {
         if (panelCristal != null) panelCristal.SetActive(false);
@@ -20,46 +20,49 @@ public class LogicaFinal : MonoBehaviour
         Debug.Log("El jugador decidió cambiar su destino. Mostrando panel 'Continuará...'");
     }
 
- public void DestruirCristal()
-{
-    // Primero asegurarse de ejecutar la corutina antes de desactivar el panel
-    if (cameraShake != null)
+    // Método para destruir el cristal y el tilemap
+    public void DestruirCristal()
     {
-        if (cameraShake.gameObject.activeInHierarchy)
+        // Primero asegurarse de ejecutar la corutina de shake
+        if (cameraShake != null)
         {
-            // Ejecutar la corutina de shake
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            if (cameraShake.gameObject.activeInHierarchy)
+            {
+                // Ejecutar la corutina de shake
+                StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            }
+            else
+            {
+                Debug.LogWarning("El objeto que contiene CameraShake no está activo. No se puede ejecutar la corutina.");
+            }
         }
         else
         {
-            Debug.LogWarning("El objeto que contiene CameraShake no está activo. No se puede ejecutar la corutina.");
+            Debug.LogWarning("CameraShake no asignado.");
+        }
+
+        // Desactivar el panel de cristal después de un pequeño retraso (si se necesita)
+        if (panelCristal != null)
+        {
+            StartCoroutine(DesactivarPanelConRetraso());
+        }
+
+        // Destruir el Tilemap solo si el jugador decide destruir el cristal
+        if (tilemapObject != null)
+        {
+            Destroy(tilemapObject);
+            Debug.Log("Tilemap destruido junto con el cristal.");
         }
     }
-    else
+
+    // Corutina para desactivar el panel con un pequeño retraso
+    private IEnumerator DesactivarPanelConRetraso()
     {
-        Debug.LogWarning("CameraShake no asignado.");
+        yield return new WaitForSeconds(0.1f);  // Pequeño retraso para asegurar que la corutina de shake termine
+        if (panelCristal != null) 
+        {
+            panelCristal.SetActive(false);
+            Debug.Log("Panel de cristal desactivado.");
+        }
     }
-
-    // Desactivar el panel de cristal después de un pequeño retraso (si se necesita)
-    if (panelCristal != null)
-    {
-        StartCoroutine(DesactivarPanelConRetraso());
-    }
-
-    // Destruir el Tilemap
-    if (tilemapObject != null)
-    {
-        Destroy(tilemapObject);
-        Debug.Log("Tilemap destruido junto con el cristal.");
-    }
-}
-
-// Corutina para desactivar el panel con un pequeño retraso
-private IEnumerator DesactivarPanelConRetraso()
-{
-    yield return new WaitForSeconds(0.1f);  // Pequeño retraso para asegurar que la corutina de shake termine
-    panelCristal.SetActive(false);
-    Debug.Log("Panel de cristal desactivado.");
-}
-
 }
